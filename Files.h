@@ -11,7 +11,6 @@
 void writeFile(double gameTime) {
     errno_t err;
 
-    // Use fopen_s instead of fopen
     err = fopen_s(&fp, "./game_stats.txt", "a");
     if (err != 0)
     {
@@ -20,7 +19,6 @@ void writeFile(double gameTime) {
     }
     else
     {
-        // Write to the file as before
         fprintf(fp, "%f\n", gameTime);
         printf("File 'game_stats.txt' updated successfully.\n");
         fclose(fp);
@@ -32,12 +30,11 @@ double readFile() {
     double minTime = 100000;
     double currentTime;
 
-    // Use fopen_s instead of fopen
     err = fopen_s(&fp, "./game_stats.txt", "r");
     if (err != 0)
     {
         perror("Error opening file for reading");
-        exit(EXIT_FAILURE); // Use a consistent exit strategy (EXIT_FAILURE is more standard than 1)
+        exit(EXIT_FAILURE);
     }
     else
     {

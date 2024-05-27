@@ -15,7 +15,7 @@
 int main(int argc, char* args[]) {
 
     readFile();
-    // Ustawienie wszystkich pól na domy?lny typ
+    // Ustawienie wszystkich pól na domyslny typ
     struct field map[MAP_SIZE][MAP_SIZE];
 
     for (int i = 0; i < MAP_SIZE; i++) {
@@ -43,11 +43,11 @@ int main(int argc, char* args[]) {
         for (int j = 0; j < MAP_SIZE; j++) {
             if (map[i][j].type == TILE_BOMB) {
 
-                // Sprawdzenie s¹siednich pól
+                // Sprawdzenie sasiednich pól
                 for (int x = i - 1; x <= i + 1; x++) {
                     for (int y = j - 1; y <= j + 1; y++) {
 
-                        // Je?li pole jest na mapie i nie jest min¹, zwiêksz warto?æ pola o 1
+                        // Jesli pole jest na mapie i nie jest mina, zwiêksz wartosc pola o 1
                         if (x < 0 || x >= MAP_SIZE || y < 0 || y >= MAP_SIZE || map[x][y].type == TILE_BOMB) {
                             continue;
                         }
@@ -73,7 +73,7 @@ int main(int argc, char* args[]) {
     }
 
 
-    // Wy?wietlenie mapy przed pierwszym ruchem
+    // Wyswietlenie mapy przed pierwszym ruchem
     printf("Generated map:\n");
     for (int i = 0; i < MAP_SIZE; i++) {
         for (int j = 0; j < MAP_SIZE; j++) {

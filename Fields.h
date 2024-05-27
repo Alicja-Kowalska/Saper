@@ -66,7 +66,7 @@ void reveal_neighbors(struct field(*map)[MAP_SIZE], int row, int col) {
                 continue;
             }
 
-            if (!map[i][j].is_flagged) {
+            if (!first_move && !map[i][j].is_flagged) {
                 map[i][j].is_visible = true;
 
                 if (map[i][j].type == TILE_BOMB) {
@@ -115,7 +115,7 @@ int click_field(struct field(*map)[MAP_SIZE], int row, int col) {
         first_move = false;
     }
 
-    // Je?li odkryte pole zawiera bombê, zakoñcz grê i odkryj reszte bomb
+    // Jesli odkryte pole zawiera bombe, zakoncz gre i odkryj reszte bomb
     if (map[row][col].type == TILE_BOMB) {
         game_over = true;
         map[row][col].type = TILE_RED_BOMB;
@@ -135,7 +135,7 @@ int click_field(struct field(*map)[MAP_SIZE], int row, int col) {
         return 0;
     }
 
-    // Je?li odkryte pole jest puste, odkryj wszystkie puste pola wokó³ niego
+    // Jesli odkryte pole jest puste, odkryj wszystkie puste pola wokól niego
     if (map[row][col].type == TILE_0) {
         reveal_empty_fields(map, row, col);
     }
