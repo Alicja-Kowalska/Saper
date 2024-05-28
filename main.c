@@ -30,29 +30,23 @@ int main(int argc, char* args[]) {
     // Inicjalizacja bomb
     srand(time(NULL));
     int bombs_placed = 0;
+
     while (bombs_placed < NR_OF_MINES) {
         int i = rand() % MAP_SIZE;
         int j = rand() % MAP_SIZE;
         if (map[i][j].type != TILE_BOMB) {
             map[i][j].type = TILE_BOMB;
             bombs_placed++;
-        }
-    }
 
-    for (int i = 0; i < MAP_SIZE; i++) {
-        for (int j = 0; j < MAP_SIZE; j++) {
-            if (map[i][j].type == TILE_BOMB) {
+            // Sprawdzenie sasiednich pól
+            for (int x = i - 1; x <= i + 1; x++) {
+                for (int y = j - 1; y <= j + 1; y++) {
 
-                // Sprawdzenie sasiednich pól
-                for (int x = i - 1; x <= i + 1; x++) {
-                    for (int y = j - 1; y <= j + 1; y++) {
-
-                        // Jesli pole jest na mapie i nie jest mina, zwiêksz wartosc pola o 1
-                        if (x < 0 || x >= MAP_SIZE || y < 0 || y >= MAP_SIZE || map[x][y].type == TILE_BOMB) {
-                            continue;
-                        }
+                    // Jesli pole jest na mapie i nie jest mina, zwiêksz wartosc pola o 1
+                    if (x >= 0 && x < MAP_SIZE && y >= 0 && y < MAP_SIZE && map[x][y].type != TILE_BOMB) {
                         map[x][y].value += 1;
                     }
+
                 }
             }
         }
